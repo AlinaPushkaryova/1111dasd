@@ -7,6 +7,7 @@ import {UserInfoComponent} from './components/user/user-info/user-info.component
 import { UserService } from './components/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     AppComponent,
     UserInfoComponent,
     UserCardComponent,
-    FilterBarComponent
+    FilterBarComponent,
+    SortBarComponent
   ],
   imports: [
     BrowserModule,

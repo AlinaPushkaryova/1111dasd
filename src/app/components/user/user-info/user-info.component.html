@@ -1,9 +1,10 @@
 <div class="user_info_wrapper">
   <app-filter-bar></app-filter-bar>
-  <div class="user_info" *ngFor="let order of orders">
+  <app-sort-bar [orders]="orders" [users]="users" (sortedUsers)="getUsers($event)"></app-sort-bar>
+  <div class="user_info" *ngFor="let order of orders" >
     <p>Exchange rate ${{order.exchange_rate}}</p>
     <p> Order range from {{order.range[0]}} grams to {{order.range[1]}} grams</p>
-    <p *ngFor="let user of getParticularUser(order.id)"> {{user.name}}, {{user.rating}}</p>
+    <p *ngFor="let user of getParticularUser(order.id, users)"> {{user.name}}, {{user.rating}}</p>
     <p></p>
   </div>
 </div>

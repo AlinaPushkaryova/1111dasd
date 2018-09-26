@@ -8,8 +8,8 @@ import { UserService } from '../user.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  public users: Array<any> = [];
-  public orders: Array<any> = [];
+  public users: Array<any[]> = [];
+  public orders: Array<any[]> = [];
 
   constructor(private userService: UserService) { }
 
@@ -23,7 +23,6 @@ export class UserInfoComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(res => {
         this.users = res;
-        console.log(this.users);
       });
   }
 
@@ -31,11 +30,15 @@ export class UserInfoComponent implements OnInit {
     this.userService.getOrders()
       .subscribe(res => {
         this.orders = res;
-        console.log(this.orders)
       });
   }
 
-  getParticularUser(id: number){
-    return this.users.filter(item => item.id === id);
+  getUsers(event) {
+    console.log(event)
+  }
+
+  getParticularUser(id: number, users): void {
+    console.log(users)
+    return users.filter(item => item.id === id);
   }
 }
