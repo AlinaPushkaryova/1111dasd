@@ -10,24 +10,28 @@ export class UserInfoComponent implements OnInit {
 
   public users: any = [];
   public orders: any = [];
-  public filteredUsers;
+  public filteredUsers = [];
+  public filteredOrders = [];
+  public defaultOrders = [];
+
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private changeDet: ChangeDetectorRef
+
   ) { }
+
 
   ngOnInit() {
     this.getUserList();
     this.getOrdersList();
-
   }
 
-
   getUserList() {
-    this.userService.getUsers()
-      .subscribe(res => {
-        this.users = res;
-      });
+      this.userService.getUsers()
+        .subscribe(res => {
+          this.users = res;
+        });
   }
 
   getOrdersList() {
@@ -35,9 +39,9 @@ export class UserInfoComponent implements OnInit {
       .subscribe(res => {
         this.orders = res;
         this.orders.map (item => {
-          return item.userName = this.getParticularUser(item.user);
+            return item.userName = this.getParticularUser(item.user);
         });
-        console.log(this.orders);
+        this.defaultOrders = this.orders;
       });
   }
 
@@ -48,5 +52,11 @@ export class UserInfoComponent implements OnInit {
 
   getParticularUser(id?: number): void {
       return this.users.filter(item => item.id === id)[0];
-    }
+  }
+
+  getFilteredData(event) {
+    this.filteredOrders = event;
+    this.orders = this.defaultOrders;
+    this.filteredOrders.length ? this.orders = this.filteredOrders : this.orders = [];
+  }
 }

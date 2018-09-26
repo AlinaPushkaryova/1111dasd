@@ -1,5 +1,5 @@
 <div class="user_info_wrapper">
-  <app-filter-bar [orders]="orders"></app-filter-bar>
+  <app-filter-bar [orders]="orders" (passPriceRange)="getFilteredData($event)"></app-filter-bar>
   <app-sort-bar [orders]="orders" (sortedUsers)="getUsers($event)"></app-sort-bar>
   <div class="user_info" *ngFor="let order of orders;" >
     <p>Exchange rate ${{order.exchange_rate}}</p>
