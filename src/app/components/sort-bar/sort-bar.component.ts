@@ -8,8 +8,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class SortBarComponent implements OnInit {
 
   @Input() orders;
-  @Input() users;
-  @Output() sortedUsers = new EventEmitter<any>;
+  @Output() sortedUsers = new EventEmitter<any>();
+
+  users;
+
 
   public menuItems = [
     'price low to high',
@@ -30,7 +32,7 @@ export class SortBarComponent implements OnInit {
     if (this.selectedMenu === 'price low to high') {
       this.sortByPriceLowToHigh(this.orders);
     } else if (this.selectedMenu === 'rating') {
-      this.sortByRating(this.users);
+      this.sortByRating();
     } else if (this.selectedMenu === 'price high to low') {
       this.sortByPriceHighToLow(this.orders);
     }
@@ -40,8 +42,8 @@ export class SortBarComponent implements OnInit {
     this.ordersSorted = orders.sort((a, b) => parseFloat(a.exchange_rate) - parseFloat(b.exchange_rate));
   }
 
-  sortByRating(users): void {
-    this.usersSorted = users.sort((a, b) => parseFloat(a.rating) - parseFloat(b.rating)).reverse();
+  sortByRating(): void {
+    this.usersSorted = this.orders.sort((a, b) => parseFloat(a.userName.rating) - parseFloat(b.userName.rating)).reverse();
     this.sortedUsers.emit(this.usersSorted);
   }
 

@@ -3,12 +3,12 @@
   border-top: 1px solid grey;
   height: 50px;
   width: 750px;
-  /*padding: 10px;*/
 }
 li {
   display: inline-block;
   line-height: 30px;
   margin-left: 45px;
+  padding: 0 10px;
   cursor: pointer;
 }
 ul {
@@ -18,5 +18,11 @@ ul {
 }
 
 .active {
-  background-color: aquamarine;
+  background-color: #e41c77;
+  border-radius: 15px;
+}
+
+.sort_bar_container {
+  margin: 10px;
+  padding: 10px;
 }

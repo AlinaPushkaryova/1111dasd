@@ -1,0 +1,9 @@
+.container {
+  margin: 30px 20px;
+  width: 750px;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

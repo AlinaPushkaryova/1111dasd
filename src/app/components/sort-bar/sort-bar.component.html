@@ -1,7 +1,7 @@
 <div class="sort_bar_container">
   <div class="sort_bar">
     <span> Sort by </span>
-    <ul *ngFor="let menu of menuItems" >
+    <ul *ngFor="let menu of menuItems">
       <li (click)="sortElementsBy(menu)" [class.active]="menu === selectedMenu">{{menu}}</li>
     </ul>
   </div>

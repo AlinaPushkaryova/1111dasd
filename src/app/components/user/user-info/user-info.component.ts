@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,16 +8,20 @@ import { UserService } from '../user.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  public users: Array<any[]> = [];
-  public orders: Array<any[]> = [];
+  public users: any = [];
+  public orders: any = [];
+  public filteredUsers;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.getUserList();
     this.getOrdersList();
 
   }
+
 
   getUserList() {
     this.userService.getUsers()
@@ -30,15 +34,19 @@ export class UserInfoComponent implements OnInit {
     this.userService.getOrders()
       .subscribe(res => {
         this.orders = res;
+        this.orders.map (item => {
+          return item.userName = this.getParticularUser(item.user);
+        });
+        console.log(this.orders);
       });
   }
 
-  getUsers(event) {
-    console.log(event)
+  getUsers(users) {
+    this.filteredUsers = users;
+    return this.filteredUsers;
   }
 
-  getParticularUser(id: number, users): void {
-    console.log(users)
-    return users.filter(item => item.id === id);
-  }
+  getParticularUser(id?: number): void {
+      return this.users.filter(item => item.id === id)[0];
+    }
 }
